@@ -1,6 +1,6 @@
 # Spotify API Wrapper for Node.js/Bun.js
 
-This Node module provides a wrapper for the Spotify API, allowing developers to easily access information about a user's currently playing song and recently played tracks.
+This module (created using bun.js) provides a wrapper for the Spotify API, allowing developers to easily access information about a user's currently playing song and recently played tracks.
 
 ## Installation
 
