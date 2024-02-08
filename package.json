@@ -1,0 +1,45 @@
+{
+  "name": "@meertarbani/spotify-api-js",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "Advance Spotify API Wrapper for Node.js and Browser",
+  "scripts": {
+    "dev": "bun --bun --hot --watch ./src/index.ts",
+    "build": "bun run build.mjs",
+    "prepublishOnly": "bun run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "spotify",
+    "api",
+    "spotify-api",
+    "spotify-api-js",
+    "spotify-api-node",
+    "spotify-api-node-js",
+    "spotify-api-node-ts",
+    "spotify-api-node-typescript",
+    "spotify-api-node-js-typescript",
+    "bun"
+  ],
+  "license": "MIT",
+  "homepage": "https://www.meertarbani.in",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Redskull-127/spotify-api-js.git"
+  },
+  "bugs": "https://github.com/Redskull-127/spotify-api-js/issues",
+  "author": {
+    "name": "Meer Tarbani",
+    "email": "redskull@duck.com",
+    "url": "https://www.meertarbani.in"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.0",
+    "bun-plugin-dts": "^0.2.1",
+    "typescript": "^5.2.2",
+    "@types/node": "^20.11.16"
+  }
+}

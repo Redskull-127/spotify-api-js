@@ -1,0 +1,6 @@
+.github
+node_modules
+test
+.gitignore
+build.mjs
+bun.lockb
