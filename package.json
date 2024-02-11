@@ -1,6 +1,6 @@
 {
   "name": "@meertarbani/spotify-api-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Advance Spotify API Wrapper for Node.js and Browser",
