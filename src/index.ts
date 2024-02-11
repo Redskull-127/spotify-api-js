@@ -1,4 +1,3 @@
-import { getNowPlaying } from "./core/now-playing";
-import { getRecentlyPlayed } from "./core/recently-playing";
+import { SpotifyClient } from "./core";
 
-export { getNowPlaying, getRecentlyPlayed };
+export { SpotifyClient };

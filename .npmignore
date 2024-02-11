@@ -4,3 +4,4 @@ test
 .gitignore
 build.mjs
 bun.lockb
+.env

@@ -23,29 +23,25 @@ Before using this module, you need to obtain the following credentials from Spot
 Once you have obtained these credentials, you can use this module as follows:
 
 ```javascript
-import { getNowPlaying, getRecentlyPlayed } from "@meertarbani/spotify-api-js";
+import { SpotifyClient } from "./core";
 
-async function getNowPlaying() {
-  // Initialize the Spotify API with your credentials
-  const response = await getNowPlaying({
-    clientId: process.env.SPOTIFY_CLIENT_ID,
-    clientSecret: process.env.SPOTIFY_SECRET_ID,
-    refreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
-  });
-  console.log(response);
-}
+// Initialize the SpotifyClient with the required environment variables
 
-// Get the user's currently playing song
-async function getNowPlaying() {
-  // Initialize the Spotify API with your credentials
-  const response = await getRecentlyPlayed({
-    url: "can be used to get the next page of results (accessed via the next field in the response) else it will return the first page of results", // optional
-    clientId: process.env.SPOTIFY_CLIENT_ID,
-    clientSecret: process.env.SPOTIFY_SECRET_ID,
-    refreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
-  });
-  console.log(response);
-}
+const client = new SpotifyClient({
+    SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID as string,
+    SPOTIFY_REFRESH_TOKEN: process.env.SPOTIFY_REFRESH_TOKEN as string,
+    SPOTIFY_SECRET_ID: process.env.SPOTIFY_SECRET_ID as string
+})
+
+// Get the currently playing track and the recently played tracks
+const nowPlaying = await client.getNowPlaying();
+const recentlyPlayed = await client.getRecentlyPlayed({
+    // nextUrl is an optional parameter, if you want to get the next set of recently played tracks!
+    nextUrl: "https://api.spotify.com/v1/me/player/recently-played?before=1707503673732" // Optional parameter
+});
+
+// Log the results
+console.log(nowPlaying, recentlyPlayed);
 ```
 
 ## Contributing
