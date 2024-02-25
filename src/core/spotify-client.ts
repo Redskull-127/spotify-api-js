@@ -1,6 +1,13 @@
-import { SpotifyClientOptions } from "../../types/types";
+import {
+  RecentlyPlayedTypes,
+  SpotifyClientOptions,
+  SpotifyUserProfileResponse,
+} from "../../types/types";
+import { NowPlayingResponseTypes } from "../../types/other/currentplaying-types";
+import { RecentlyPlayingResponseTypes } from "../../types/other/recentlyplaying-types";
 import { getNowPlaying } from "./now-playing";
 import { getRecentlyPlayed } from "./recently-playing";
+import { getUserProfile } from "./user-profile";
 
 export class SpotifyClient {
   private SPOTIFY_CLIENT_ID: string;
@@ -17,16 +24,26 @@ export class SpotifyClient {
     return getNowPlaying({
       SPOTIFY_CLIENT_ID: this.SPOTIFY_CLIENT_ID,
       SPOTIFY_REFRESH_TOKEN: this.SPOTIFY_REFRESH_TOKEN,
-      SPOTIFY_SECRET_ID: this.SPOTIFY_SECRET_ID
-    });
+      SPOTIFY_SECRET_ID: this.SPOTIFY_SECRET_ID,
+    }) as Promise<NowPlayingResponseTypes>;
   }
 
-  public async getRecentlyPlayed(props? : {nextUrl: string}){
-    return getRecentlyPlayed({
+  public async getRecentlyPlayed(props?: RecentlyPlayedTypes) {
+    return getRecentlyPlayed(
+      {
+        SPOTIFY_CLIENT_ID: this.SPOTIFY_CLIENT_ID,
+        SPOTIFY_REFRESH_TOKEN: this.SPOTIFY_REFRESH_TOKEN,
+        SPOTIFY_SECRET_ID: this.SPOTIFY_SECRET_ID,
+      },
+      props || {}
+    ) as Promise<RecentlyPlayingResponseTypes>;
+  }
+
+  public async getUserProfile() {
+    return getUserProfile({
       SPOTIFY_CLIENT_ID: this.SPOTIFY_CLIENT_ID,
       SPOTIFY_REFRESH_TOKEN: this.SPOTIFY_REFRESH_TOKEN,
       SPOTIFY_SECRET_ID: this.SPOTIFY_SECRET_ID,
-      ...props,
-    });
+    }) as Promise<SpotifyUserProfileResponse>;
   }
 }

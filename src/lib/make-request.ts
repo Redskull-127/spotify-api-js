@@ -4,28 +4,22 @@ const REFRESH_TOKEN_URL = "https://accounts.spotify.com/api/token";
 
 let SPOTIFY_TOKEN = "";
 
-const getAuthHeader = (
-  SPOTIFY_CLIENT_ID: string,
-  SPOTIFY_SECRET_ID: string
-) => {
-  const authString = `${SPOTIFY_CLIENT_ID}:${SPOTIFY_SECRET_ID}`;
+const getAuthHeader = (clientId: string, secretId: string) => {
+  const authString = `${clientId}:${secretId}`;
   return Buffer.from(authString).toString("base64");
 };
 
 const requestRefreshToken = async (
-  SPOTIFY_REFRESH_TOKEN: string,
-  SPOTIFY_CLIENT_ID: string,
-  SPOTIFY_SECRET_ID: string
+  refreshToken: string,
+  clientId: string,
+  secretId: string
 ) => {
   const data = new URLSearchParams({
     grant_type: "refresh_token",
-    refresh_token: SPOTIFY_REFRESH_TOKEN as string,
+    refresh_token: refreshToken,
   });
   const headers = {
-    Authorization: `Basic ${getAuthHeader(
-      SPOTIFY_CLIENT_ID,
-      SPOTIFY_SECRET_ID
-    )}`,
+    Authorization: `Basic ${getAuthHeader(clientId, secretId)}`,
     "Content-Type": "application/x-www-form-urlencoded",
   };
   try {
@@ -34,7 +28,7 @@ const requestRefreshToken = async (
       headers,
       body: data,
     });
-    const resp = response !== undefined && (await response.json());
+    const resp = await response.json();
     return resp.access_token;
   } catch (error) {
     return { error: "Error fetching refresh token" };
@@ -58,7 +52,7 @@ export const makeRequest = async (props: MakeRequestTypes): Promise<any> => {
         Authorization: `Bearer ${SPOTIFY_TOKEN}`,
       },
     });
-    const res = makeResponse && (await makeResponse.json());
+    const res = await makeResponse.json();
     return res;
   } catch (error: any) {
     if (error.response?.status === 401) {
