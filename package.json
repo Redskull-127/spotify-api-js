@@ -1,6 +1,6 @@
 {
   "name": "@meertarbani/spotify-api-js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",

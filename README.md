@@ -24,7 +24,7 @@ You can obtain these credentials by following the steps outlined in the [Setting
 Once you have obtained these credentials, you can use this module as follows:
 
 ```typescript
-import { SpotifyClient } from "./core";
+import { SpotifyClient } from "@meertarbani/spotify-api-js";
 
 // Initialize the SpotifyClient with the required environment variables
 
@@ -72,6 +72,16 @@ const recentlyPlayed = await client.getRecentlyPlayed({
 
 // Log the results
 console.log(recentlyPlayed);
+```
+
+### Get Any API Endpoint
+
+```typescript
+// Get any API endpoint that hasn't been implemented yet
+const customAPI = await client.getCustomAPI("https://api.spotify.com/v1/me/player"); // pass the endpoint you want to get!
+
+// Log the results
+console.log(customAPI);
 ```
 
 ## Contributing
